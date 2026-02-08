@@ -132,6 +132,10 @@ init_build_logfile() {
     rm -f "$BUILD_LOGFILE"
     touch "$BUILD_LOGFILE"
     tip "Initializing (build) log file at $BUILD_LOGFILE".
+    # Show log progression (last line) as background job
+    if [ "$KERL_LOG_PROGRESS" -eq 1 ]; then
+        (tail -n 1 -q -f "$BUILD_LOGFILE" | xargs -I {} echo -e '\r\033[1A\033[0K{}') &
+    fi
 }
 
 log_build_entry() {
@@ -233,6 +237,7 @@ KERL_GIT_BASE=https://raw.githubusercontent.com/kerl/kerl/master
 KERL_COLORIZE=${KERL_COLORIZE:=$KERL_COLOR_AVAILABLE}
 KERL_INCLUDE_RELEASE_CANDIDATES=${KERL_INCLUDE_RELEASE_CANDIDATES:=no}
 KERL_CHECK_BUILD_PACKAGES=${KERL_CHECK_BUILD_PACKAGES:="yes"}
+KERL_LOG_PROGRESS=${KERL_LOG_PROGRESS:=1}
 
 act_on_kerl_cfgs() {
     # $1: kerl config. flags (we're only interested in the keys)
@@ -633,6 +638,8 @@ unlock() {
     # $2: folder to act on
 
     rm -f "$2/$1.lock"
+    # kill background jobs if any
+    jobs -p | xargs -r kill -9
 }
 
 lock_build() {

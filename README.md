@@ -488,6 +488,13 @@ up to 120 MB.
 
 Build Erlang/OTP to use SASL startup instead of minimal (default, when var is unset).
 
+#### `KERL_LOG_PROGRESS`
+
+Default: 1 (Enabled)
+Show log progression of build. New line in log replace last terminal line.
+
+Set to 0 to hide log progression.
+
 ### Activation configuration
 
 The following applies when activating an installation (i.e. `. ${KERL_DEFAULT_INSTALL_DIR}/28.0/activate`).
