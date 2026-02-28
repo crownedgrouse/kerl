@@ -237,7 +237,7 @@ KERL_GIT_BASE=https://raw.githubusercontent.com/kerl/kerl/master
 KERL_COLORIZE=${KERL_COLORIZE:=$KERL_COLOR_AVAILABLE}
 KERL_INCLUDE_RELEASE_CANDIDATES=${KERL_INCLUDE_RELEASE_CANDIDATES:=no}
 KERL_CHECK_BUILD_PACKAGES=${KERL_CHECK_BUILD_PACKAGES:="yes"}
-KERL_LOG_PROGRESS=${KERL_LOG_PROGRESS:=1}
+KERL_LOG_PROGRESS=${KERL_LOG_PROGRESS:=0}
 
 act_on_kerl_cfgs() {
     # $1: kerl config. flags (we're only interested in the keys)

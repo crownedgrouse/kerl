@@ -490,10 +490,10 @@ Build Erlang/OTP to use SASL startup instead of minimal (default, when var is un
 
 #### `KERL_LOG_PROGRESS`
 
-Default: 1 (Enabled)
+Default: 0 (Disabled)
 Show log progression of build. New line in log replace last terminal line.
 
-Set to 0 to hide log progression.
+Set to 1 to show log progression on a single line.
 
 ### Activation configuration
 
